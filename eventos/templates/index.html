@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+    <head>
+        <title>Título da página</title>
+        <meta charset="utf-8">
+        <!-- CSS only -->
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx"
+            crossorigin="anonymous">
+    </head>
+
+    <body>
+        <div class="row">
+            <div class="m-3 p-2 card col-4">
+                Adicionando eventos
+                <form action="">
+                    <input class="col-9" type="text" name="nome_evento" required="required">
+                    <button hx-post="{% url 'add-evento' %}" hx-target='#results' type="submit">Add Evento
+                    </button>
+                </form>
+
+                <div id="results">
+                    {% include 'fragmentos/lista_eventos.html' %}
+                </div>
+            </div>
+            <div class="m-3 p-2 card col-4">
+                Buscando eventos
+                <form action="">
+                    <input class="col-8" type="text" name="nome_busca" required="required" 
+                   	    hx-post="{% url 'search-evento' %}" 
+                        hx-target='#results_busca'
+                        hx-trigger="keyup"
+                        >
+                        {% comment %} <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="completo" id="flexRadioDefault1">
+                            <label class="form-check-label" for="flexRadioDefault1">
+                              Completo
+                            </label>
+                        </div> {% endcomment %}
+                </form>
+
+                <div id="results_busca">
+                    {% include 'fragmentos/lista_busca.html' %} 
+                </div>
+            </div>
+        </div>
+
+    </body>
+
+    <script src="https://unpkg.com/htmx.org@1.8.0"></script>
+    <!-- JavaScript Bundle with Popper -->
+    <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+        crossorigin="anonymous"></script>
+
+</html>

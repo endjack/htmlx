@@ -16,6 +16,20 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+
+from eventos.views import *
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', index, name='index'),
+    
 ]
+
+htmlx_urlpatterns = [
+    path('add/', add_evento, name='add-evento'),                 
+    path('remove/<pk>', remove_evento, name='remove-evento'),                 
+    path('search/', search_evento, name='search-evento'),                 
+
+]
+
+urlpatterns += htmlx_urlpatterns
