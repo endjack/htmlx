@@ -23,6 +23,32 @@ def remove_evento (request, pk):
     return render(request, template_name='fragmentos/lista_eventos.html', context={'eventos': Evento.objects.all()})
 
 @csrf_exempt
+def detalhar_evento (request, pk): 
+    context = {
+            'evento': Evento.objects.get(pk=pk),
+            'include': request.POST.get("evento_input")
+    }
+    return render(request, template_name='fragmentos/detalhar-evento.html', context=context)
+
+@csrf_exempt
+def editar_evento(request, pk): 
+    context = {
+            'evento': Evento.objects.get(pk=pk),
+    }
+    return render(request, template_name='fragmentos/editar-evento.html', context=context)
+
+@csrf_exempt
+def atualizar_evento(request, pk): 
+    
+    novo_nome = request.POST.get("nome")
+    evento = Evento.objects.filter(pk=pk).update(nome=novo_nome)
+
+    context = {
+            'evento': Evento.objects.get(pk=pk),
+    }
+    return render(request, template_name='fragmentos/detalhar-evento.html', context=context)
+
+@csrf_exempt
 def search_evento (request):
     nome = request.POST.get('nome_busca')
     if nome != "":

@@ -1,12 +1,22 @@
-<ul class="list-group col-12">
+<ul id="#lista_eventos" class="list-group col-12">
 {% for evento in eventos %}
     <li class="list-group-item d-flex justify-content-between align-items-center">
-        {{ evento.nome }} 
+        {{ evento.nome }}
+        {% comment %} <input type="hidden" name="evento_input{{evento.pk}}" value="teste@{{evento.nome}}{{evento.pk}}.com"> {% endcomment %}
+        <div class="">
+        <span class="badge bg-primary rounded-pill" 
+            style="cursor:pointer;"
+            hx-target='#ver'
+            hx-vals='{"evento_input": "teste@.com"}'
+            hx-post="{% url 'ver-evento' evento.pk %}"
+            >ver</span>
         <span class="badge bg-danger rounded-pill"
             style="cursor:pointer;"
             hx-delete="{% url 'remove-evento' evento.pk %}"
             hx-target='#results'
             hx-confirm="Tem certerza que quer EXCLUIR o evento: {{evento.nome}}?">X</span>
+        </div>
     </li>
 {% endfor %}
 </ul>
+

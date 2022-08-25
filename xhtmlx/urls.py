@@ -28,6 +28,9 @@ urlpatterns = [
 htmlx_urlpatterns = [
     path('add/', add_evento, name='add-evento'),                 
     path('remove/<pk>', remove_evento, name='remove-evento'),                 
+    path('detail/<pk>', detalhar_evento, name='ver-evento'),                 
+    path('editar/<pk>', editar_evento, name='editar-evento'),                 
+    path('atualizar/<pk>', atualizar_evento, name='atualizar-evento'),                 
     path('search/', search_evento, name='search-evento'),                 
 
 ]

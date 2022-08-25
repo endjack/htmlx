@@ -1,0 +1,15 @@
+<form hx-target="this" hx-swap="outerHTML">
+  <p>Evento nº {{evento.pk}}</p>
+  <div class="form-group">
+    <label>Evento nome</label>
+    <input type="text" name="nome" value="{{evento.nome}}">
+  </div>
+  
+  <button class="btn btn-sm btn-success"
+      hx-post="{% url 'atualizar-evento' evento.pk %}"
+      hx-target="#editando"
+      hx-swap="innerHTML"
+      >salvar</button>
+  <button class="btn btn-sm" >Cancelar</button>
+
+</form> 

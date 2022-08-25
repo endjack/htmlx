@@ -1,0 +1,12 @@
+{% if evento %}
+<div id="editando">
+<p>Evento nº {{evento.pk}}</p>
+<p>Evento nome {{evento.nome}}</p>
+<p>Include {{include}}</p>
+<span class="badge bg-success rounded-pill" 
+            style="cursor:pointer;"
+            hx-target="#editando"
+            hx-swap="innerHTML"
+            hx-post='/editar/{{evento.pk}}'>Edit</span>
+</div>
+{% endif %}
