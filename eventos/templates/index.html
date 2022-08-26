@@ -10,6 +10,10 @@
             rel="stylesheet"
             integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx"
             crossorigin="anonymous">
+
+        <style>
+   
+        </style> 
     </head>
 
     <body>
@@ -18,7 +22,11 @@
                 Adicionando eventos
                 <form action="">
                     <input class="col-9" type="text" name="nome_evento" required="required">
-                    <button hx-post="{% url 'add-evento' %}" hx-target='#results' type="submit">Add Evento
+                    <button 
+                        hx-post="{% url 'add-evento' %}" 
+                        hx-target='#results' 
+                        type="submit"
+                        _="on eventoAdd put 'Evento Adicionado' into #texto.innerHTML">Add Evento
                     </button>
                 </form>
 
@@ -47,13 +55,21 @@
                     {% include 'fragmentos/detalhar-evento.html' %} 
                 </div>
             </div>
+            <div class="m-3 p-2 card col-4">
+                hyperscript ações
+                <div id="hyper">
+                    <div id="texto" class=""></div>
+                    
+                </div>
+            </div>
         </div> 
-
-
-
-
+    <div id="addTexto"
+                    hx-post="{% url 'get-evento' %}"
+                    hx-trigger="eventoAdd from:body"
+                    hx-target="this"
+                    hx-swap="outerHTML"></div>
     </body>
-
+    <script src="https://unpkg.com/hyperscript.org@0.9.7"></script>
     <script src="https://unpkg.com/htmx.org@1.8.0"></script>
     <!-- JavaScript Bundle with Popper -->
     <script

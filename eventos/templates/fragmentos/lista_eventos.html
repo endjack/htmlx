@@ -14,7 +14,8 @@
             style="cursor:pointer;"
             hx-delete="{% url 'remove-evento' evento.pk %}"
             hx-target='#results'
-            hx-confirm="Tem certerza que quer EXCLUIR o evento: {{evento.nome}}?">X</span>
+            hx-confirm="Tem certerza que quer EXCLUIR o evento: {{evento.nome}}?"
+            _="on eventoRemove put 'Evento ({{evento.nome}}) Removido' into #texto.innerHTML"  >X</span>
         </div>
     </li>
 {% endfor %}
